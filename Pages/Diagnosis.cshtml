@@ -1,0 +1,124 @@
+@page
+@model CaminaDog.Pages.DiagnosisModel
+@{
+    ViewData["Title"] = "Diagnóstico";
+}
+
+<div class="diagnosis-container">
+    <h1 class="display-4 text-center mb-4">Diagnóstico de Paseo</h1>
+    <p class="text-center lead mb-5">Cuéntanos sobre tu perro para crear el plan perfecto.</p>
+
+    @if (!ModelState.IsValid)
+    {
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Por favor corrige los siguientes errores:</h4>
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+    }
+
+    <form method="post" class="diagnosis-form">
+        <div class="row g-4">
+            <!-- Dog Details -->
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title h5 mb-3">Sobre tu Perro</h3>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Diagnosis.DogName" class="form-label">Nombre del Perro</label>
+                            <input asp-for="Diagnosis.DogName" class="form-control" placeholder="Ej. Max" />
+                            <span asp-validation-for="Diagnosis.DogName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Diagnosis.Breed" class="form-label">Raza</label>
+                            <input asp-for="Diagnosis.Breed" class="form-control" placeholder="Ej. Labrador" />
+                            <span asp-validation-for="Diagnosis.Breed" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Diagnosis.Age" class="form-label">Edad (años)</label>
+                            <input asp-for="Diagnosis.Age" class="form-control" type="number" step="0.1" min="0" max="30" />
+                            <span asp-validation-for="Diagnosis.Age" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Diagnosis.EnergyLevel" class="form-label">Nivel de Energía</label>
+                            <select asp-for="Diagnosis.EnergyLevel" class="form-select">
+                                <option value="Baja">Baja (Duerme todo el día)</option>
+                                <option value="Media" selected>Media (Juega un rato)</option>
+                                <option value="Alta">Alta (Incansable)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Owner & Issues -->
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title h5 mb-3">Tu Experiencia y Problemas</h3>
+
+                        <div class="mb-3">
+                            <label asp-for="Diagnosis.OwnerExperience" class="form-label">Tu Experiencia</label>
+                            <select asp-for="Diagnosis.OwnerExperience" class="form-select">
+                                <option value="Principiante">Principiante (Primer perro)</option>
+                                <option value="Intermedio">Intermedio (He tenido perros antes)</option>
+                                <option value="Experto">Experto (Entiendo de conducta)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label d-block">Problemas Principales</label>
+                            <div class="form-check">
+                                <input asp-for="Diagnosis.PullsLeash" class="form-check-input" />
+                                <label asp-for="Diagnosis.PullsLeash" class="form-check-label">Jala la correa</label>
+                            </div>
+                            <div class="form-check">
+                                <input asp-for="Diagnosis.ReactsToDogs" class="form-check-input" />
+                                <label asp-for="Diagnosis.ReactsToDogs" class="form-check-label">Reactivo con perros</label>
+                            </div>
+                            <div class="form-check">
+                                <input asp-for="Diagnosis.ReactsToPeople" class="form-check-input" />
+                                <label asp-for="Diagnosis.ReactsToPeople" class="form-check-label">Reactivo con personas</label>
+                            </div>
+                            <div class="form-check">
+                                <input asp-for="Diagnosis.ReactsToNoise" class="form-check-input" />
+                                <label asp-for="Diagnosis.ReactsToNoise" class="form-check-label">Miedo a ruidos</label>
+                            </div>
+                            <div class="form-check">
+                                <input asp-for="Diagnosis.Hyperactivity" class="form-check-input" />
+                                <label asp-for="Diagnosis.Hyperactivity" class="form-check-label">Hiperactividad</label>
+                            </div>
+                            <div class="form-check">
+                                <input asp-for="Diagnosis.Disobedience" class="form-check-input" />
+                                <label asp-for="Diagnosis.Disobedience" class="form-check-label">Desobediencia</label>
+                            </div>
+                            <div class="form-check">
+                                <input asp-for="Diagnosis.ChewsThings" class="form-check-input" />
+                                <label asp-for="Diagnosis.ChewsThings" class="form-check-label">Muerde cosas</label>
+                            </div>
+                            <div class="form-check">
+                                <input asp-for="Diagnosis.JumpsOnPeople" class="form-check-input" />
+                                <label asp-for="Diagnosis.JumpsOnPeople" class="form-check-label">Salta sobre personas</label>
+                            </div>
+                            <div class="form-check">
+                                <input asp-for="Diagnosis.SeparationAnxiety" class="form-check-input" />
+                                <label asp-for="Diagnosis.SeparationAnxiety" class="form-check-label">Ansiedad por separación</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <button type="submit" class="btn btn-primary btn-lg px-5 rounded-pill shadow-lg">Generar Plan de Paseo</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
