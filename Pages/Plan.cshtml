@@ -55,10 +55,17 @@
     </div>
 
     <!-- Daily Checklist -->
-    <div class="card border-0 shadow-sm mt-5 bg-primary text-white">
-        <div class="card-body p-4">
-            <h3 class="h4 mb-3"><i class="bi bi-list-check me-2"></i>Checklist Antes de Salir</h3>
-            <pre class="text-white bg-transparent border-0 fs-6" style="font-family: inherit;">@Model.StrategyPlan.DailyChecklist</pre>
+    <div class="checklist-card card border-0 shadow-lg mt-5">
+        <div class="card-body p-5">
+            <div class="d-flex align-items-center mb-4">
+                <div class="checklist-icon me-3">
+                    <i class="bi bi-list-check"></i>
+                </div>
+                <h3 class="h3 mb-0 fw-bold text-white">Checklist Antes de Salir</h3>
+            </div>
+            <div class="checklist-content">
+                <pre class="text-white bg-transparent border-0 mb-0" style="font-family: 'Inter', system-ui, sans-serif; font-size: 1rem; line-height: 1.8; white-space: pre-wrap;">@Model.StrategyPlan.DailyChecklist</pre>
+            </div>
         </div>
     </div>
 
